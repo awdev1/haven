@@ -13,7 +13,11 @@ var HumanWeight = 100
 var fallMultiplier = 1.5
 var jumpMultiplier = 2.0
 
+var squishAmount = 10;
+	
+
 func _physics_process(delta: float) -> void:
+		
 	# Add the gravity.
 	if not is_on_floor():
 		if velocity.y > 0:
@@ -26,6 +30,7 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if is_on_floor():
+		scale = Vector2(1.2, 0.8)
 		velocity.y = JUMP_VELOCITY * jumpMultiplier
 
 	# Get the input direction and handle the movement/deceleration.
@@ -51,6 +56,10 @@ func _physics_process(delta: float) -> void:
 @onready var _start_position := global_position
 
 func _process(_delta: float) -> void:
+	if scale.x > 1:
+		var x = scale.x - 0.01
+		var y = scale.y + 0.01
+		scale = Vector2(x, y)
 	if global_position.y > 1400:
 		global_position = _start_position
 		velocity = Vector2.ZERO
