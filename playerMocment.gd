@@ -7,21 +7,26 @@ var slowSpeed = 0;
 const groundResistance = 50
 const airResistance = 20
 const StartSpeed = 300
-const JUMP_VELOCITY = -600.0
+const JUMP_VELOCITY = -400.0
 const MaxSpeed = 700.0
-
+var HumanWeight = 100
+var fallMultiplier = 1.5
+var jumpMultiplier = 2.0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		if velocity.y > 0:
+			velocity += get_gravity() * (HumanWeight / 100.0) * fallMultiplier * delta
+		else:
+			velocity += get_gravity() * delta
 		slowSpeed = airResistance
 	else:
 		slowSpeed = groundResistance
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if is_on_floor():
+		velocity.y = JUMP_VELOCITY * jumpMultiplier
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -34,8 +39,18 @@ func _physics_process(delta: float) -> void:
 			SPEED = StartSpeed
 		if SPEED < MaxSpeed:
 			SPEED += 50
-	else: if SPEED > 0:
-		SPEED -= slowSpeed
+	else:
+		if SPEED > 0:
+			SPEED -= slowSpeed
 	velocity.x = lastDirection * SPEED
 
 	move_and_slide()
+
+
+# Respawn if the player falls into a gap.
+@onready var _start_position := global_position
+
+func _process(_delta: float) -> void:
+	if global_position.y > 1400:
+		global_position = _start_position
+		velocity = Vector2.ZERO
