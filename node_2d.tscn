@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d3370i0cjyhti" path="res://dude.png" id="2_0hol4"]
 [ext_resource type="Texture2D" uid="uid://dlhgkdskec4hl" path="res://tiles.png" id="3_epypp"]
 [ext_resource type="Script" uid="uid://7kvrwu8roo3m" path="res://ui.gd" id="4_ui"]
+[ext_resource type="AudioStream" uid="uid://0c8tq5op1dht" path="res://maksymmalko-chinese-chinese-music-580437.mp3" id="5_q6r6c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kdubu"]
 radius = 88.0
@@ -28,6 +29,13 @@ position = Vector2(230, 372)
 [node name="player" type="CharacterBody2D" parent="." unique_id=1169271583]
 position = Vector2(16, 0)
 script = ExtResource("1_0e48y")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="player" unique_id=234343695]
+position = Vector2(-16, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="player/AudioListener2D" unique_id=1175082276]
+stream = ExtResource("5_q6r6c")
+autoplay = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=1873314282]
 position = Vector2(2, -37)
@@ -142,5 +150,3 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Play again"
-
-[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=234343695]
