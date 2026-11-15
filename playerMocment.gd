@@ -14,9 +14,9 @@ var fallMultiplier = 1.5
 var jumpMultiplier = 2.0
 @export var maxTiltDegrees := 20.0
 @export var tiltSmoothing := 10.0
-@export var bounceBoost := 120.0
+@export var bounceBoost := 350.0
 @export var boostMaxSpeed := 1100.0
-@export var boostDecay := 60.0
+@export var boostDecay := 200.0
 
 var squishAmount = 10;
 	
