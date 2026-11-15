@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
 	if direction:
 		if direction != lastDirection:
-			SPEED = 0
+			SPEED = -40
 		lastDirection = direction
 		if SPEED < StartSpeed:
 			SPEED = StartSpeed
