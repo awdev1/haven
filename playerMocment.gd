@@ -50,6 +50,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if is_on_floor():
 		scale = Vector2(1.2, 0.8)
+		_play_bounce_sound()
 		velocity.y = JUMP_VELOCITY * jumpMultiplier
 
 	# Get the input direction and handle the movement/deceleration.
