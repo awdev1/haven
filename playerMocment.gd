@@ -37,6 +37,10 @@ func _physics_process(delta: float) -> void:
 		var x = scale.x - 0.02
 		var y = scale.y + 0.02
 		scale = Vector2(x, y)
+	
+	if is_on_wall():
+		SPEED = -700
+	
 	# Add the gravity.
 	if not is_on_floor():
 		if velocity.y > 0:
