@@ -21,9 +21,16 @@ var jumpMultiplier = 2.0
 @export var iceTurnDecel := 14.0
 @export var iceAccel := 100.0
 var onIce := false
+const bounceSounds := [0.7, 1.35, 2.2, 3.1, 4.0]
+const fallSoundY := 620.0
+const respawnY := 2200.0
+const bounceVolumeDb := -4.0
+var falling := false
+@onready var sfx: AudioStreamPlayer2D = $AudioListener2D/AudioStreamPlayer2D
+@onready var deathSound: AudioStreamPlayer2D = $AudioListener2D/DeathSound
 
-var squishAmount = 10
-var score = 0
+var squishAmount = 10;
+	
 
 func _physics_process(delta: float) -> void:
 	if scale.x > 1:
@@ -86,7 +93,13 @@ func _process(_delta: float) -> void:
 		#var x = scale.x - 0.01
 		#var y = scale.y + 0.01
 		#scale = Vector2(x, y)
-	if global_position.y > 1400:
+	if global_position.x >= level2X and _start_position.x < level2X and is_on_floor():
+		_start_position = global_position
+	if global_position.y > fallSoundY and not falling:
+		falling = true
+		deathSound.play(0.5)
+	if global_position.y > respawnY:
+		falling = false
 		global_position = _start_position
 		velocity = Vector2.ZERO
 
@@ -102,9 +115,8 @@ func _floor_is_ice() -> bool:
 					return data.get_custom_data("ice")
 	return false
 
-func _on_collect_signal():
-	score += 10
-	update_score_label()
-
-func update_score_label():
-	$UI/ScoreLabel.text = str(score)
+func _play_bounce_sound() -> void:
+	sfx.volume_db = bounceVolumeDb
+	sfx.pitch_scale = randf_range(0.9, 1.1)
+	sfx.play(bounceSounds.pick_random())
+	get_tree().create_timer(0.35).timeout.connect(sfx.stop)
