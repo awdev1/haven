@@ -510,3 +510,9 @@ z_index = -181
 position = Vector2(31484.004, -349)
 scale = Vector2(28.888575, 5.229032)
 texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview3" type="Sprite2D" parent="." unique_id=1004446337]
+z_index = -1
+position = Vector2(41944.75, -171.25014)
+scale = Vector2(67.49858, 10.724194)
+texture = ExtResource("6_kdubu")
