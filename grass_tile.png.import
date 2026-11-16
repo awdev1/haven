@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0enhjpc6fghy"
-path="res://.godot/imported/Hedgehog.png-a566888ea86443bcc81b1d9807c5e42c.ctex"
+uid="uid://c8w27dytaci5v"
+path="res://.godot/imported/grass_tile.png-1b58c18cf6941171bd517ce26e716f8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hedgehog.png"
-dest_files=["res://.godot/imported/Hedgehog.png-a566888ea86443bcc81b1d9807c5e42c.ctex"]
+source_file="res://grass_tile.png"
+dest_files=["res://.godot/imported/grass_tile.png-1b58c18cf6941171bd517ce26e716f8a.ctex"]
 
 [params]
 

@@ -1,0 +1,512 @@
+[gd_scene format=4 uid="uid://ln7myfsat5py"]
+
+[ext_resource type="Script" uid="uid://1cmv3krxd7kr" path="res://playerMocment.gd" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://6tp3wyjdwwxm" path="res://basicBurger.png" id="1_d21ai"]
+[ext_resource type="Texture2D" uid="uid://d3370i0cjyhti" path="res://dude.png" id="2_0hol4"]
+[ext_resource type="Texture2D" uid="uid://dlhgkdskec4hl" path="res://tiles.png" id="3_epypp"]
+[ext_resource type="Script" uid="uid://7kvrwu8roo3m" path="res://ui.gd" id="4_ui"]
+[ext_resource type="Texture2D" uid="uid://cmibqq6mlrx7q" path="res://hero-bg-no-sticky-tree.webp" id="5_q6r6c"]
+[ext_resource type="Texture2D" uid="uid://bmgcbkrpnavjp" path="res://Untitled_Design-removebg-preview.png" id="6_kdubu"]
+[ext_resource type="AudioStream" uid="uid://rwe4apjvk8tt" path="res://GuySounds.mp3" id="7_guy"]
+[ext_resource type="AudioStream" uid="uid://0c8tq5op1dht" path="res://maksymmalko-chinese-chinese-music-580437.mp3" id="8_music"]
+[ext_resource type="Script" uid="uid://dc75d0j0ahr34" path="res://burger.gd" id="8_rj586"]
+[ext_resource type="AudioStream" uid="uid://c7j4kv5a1sqb" path="res://huuaahhhh.mp3" id="9_ding"]
+[ext_resource type="Texture2D" uid="uid://5fjs6gkptxne" path="res://bg-middle.webp" id="10_ir8iy"]
+[ext_resource type="FontFile" uid="uid://fm7ansgw5ump" path="res://PressStart2P-Regular.ttf" id="11_font"]
+[ext_resource type="Texture2D" uid="uid://dqs1jpi2hh3by" path="res://landing-frame-4-q80.webp" id="14_nr8wp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kdubu"]
+radius = 100.0
+height = 363.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0e48y"]
+texture = ExtResource("3_epypp")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:0/0/custom_data_0 = true
+
+[sub_resource type="TileSet" id="TileSet_0hol4"]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "ice"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_0e48y")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5iupw"]
+radius = 107.07474
+
+[node name="Node2D" type="Node2D" unique_id=1716575142]
+position = Vector2(230, 372)
+
+[node name="player" type="CharacterBody2D" parent="." unique_id=1169271583]
+position = Vector2(16, 0)
+script = ExtResource("1_0e48y")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="player" unique_id=234343695]
+position = Vector2(-16, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="player/AudioListener2D" unique_id=1175082276]
+stream = ExtResource("7_guy")
+volume_db = -4.0
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="player/AudioListener2D" unique_id=329167636]
+stream = ExtResource("9_ding")
+volume_db = 8.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=1873314282]
+position = Vector2(-1, -37)
+shape = SubResource("CapsuleShape2D_kdubu")
+
+[node name="Sprite2D" type="Sprite2D" parent="player" unique_id=1695900617]
+position = Vector2(-8.000008, -65)
+scale = Vector2(0.09974801, 0.099748015)
+texture = ExtResource("2_0hol4")
+
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=392440972]
+position_smoothing_enabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=102687344]
+tile_map_data = PackedByteArray("AAD8/wIAAAAAAAAAAAD8/wMAAAABAAAAAAD8/wQAAAABAAAAAAD8/wUAAAABAAAAAAD9/wIAAAAAAAAAAAD9/wMAAAABAAAAAAD9/wQAAAABAAAAAAD9/wUAAAABAAAAAAD+/wIAAAAAAAAAAAD+/wMAAAABAAAAAAD+/wQAAAABAAAAAAD+/wUAAAABAAAAAAD//wIAAAAAAAAAAAD//wMAAAABAAAAAAD//wQAAAABAAAAAAD//wUAAAABAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAABAAAAAAAAAAQAAAABAAAAAAAAAAUAAAABAAAAAAABAAIAAAAAAAAAAAABAAMAAAABAAAAAAABAAQAAAABAAAAAAABAAUAAAABAAAAAAACAAIAAAAAAAAAAAACAAMAAAABAAAAAAACAAQAAAABAAAAAAACAAUAAAABAAAAAAADAAIAAAAAAAAAAAADAAMAAAABAAAAAAADAAQAAAABAAAAAAADAAUAAAABAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAABAAAAAAAEAAQAAAABAAAAAAAEAAUAAAABAAAAAAAFAAIAAAABAAAAAAAFAAMAAAABAAAAAAAFAAQAAAABAAAAAAAFAAUAAAABAAAAAAAGAAIAAAABAAAAAAAGAAMAAAABAAAAAAAGAAQAAAABAAAAAAAGAAUAAAABAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAABAAAAAAAHAAQAAAABAAAAAAAHAAUAAAABAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAABAAAAAAAIAAQAAAABAAAAAAAIAAUAAAABAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAABAAAAAAAJAAQAAAABAAAAAAAJAAUAAAABAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAABAAAAAAAKAAQAAAABAAAAAAAKAAUAAAABAAAAAAAOAAIAAAAAAAAAAAAOAAMAAAABAAAAAAAOAAQAAAABAAAAAAAPAAIAAAAAAAAAAAAPAAMAAAABAAAAAAAPAAQAAAABAAAAAAAQAAIAAAAAAAAAAAAQAAMAAAABAAAAAAAQAAQAAAABAAAAAAARAAIAAAAAAAAAAAARAAMAAAABAAAAAAARAAQAAAABAAAAAAAVAAEAAAAAAAAAAAAVAAIAAAABAAAAAAAVAAMAAAABAAAAAAAWAAEAAAAAAAAAAAAWAAIAAAABAAAAAAAWAAMAAAABAAAAAAAXAAEAAAABAAAAAAAXAAIAAAABAAAAAAAXAAMAAAABAAAAAAAbAAAAAAAAAAAAAAAbAAEAAAABAAAAAAAbAAIAAAABAAAAAAAcAAAAAAAAAAAAAAAcAAEAAAABAAAAAAAcAAIAAAABAAAAAAAdAAAAAAAAAAAAAAAdAAEAAAABAAAAAAAdAAIAAAABAAAAAAAiAAAAAAACAAAAAAAiAAEAAAABAAAAAAAiAAIAAAABAAAAAAAiAAMAAAABAAAAAAAjAAAAAAACAAAAAAAjAAEAAAABAAAAAAAjAAIAAAABAAAAAAAjAAMAAAABAAAAAAAkAAAAAAAAAAAAAAAkAAEAAAABAAAAAAAkAAIAAAABAAAAAAAkAAMAAAABAAAAAAAoAAEAAAAAAAAAAAAoAAIAAAABAAAAAAAoAAMAAAABAAAAAAApAAEAAAAAAAAAAAApAAIAAAABAAAAAAApAAMAAAABAAAAAAAtAAIAAAAAAAAAAAAtAAMAAAABAAAAAAAtAAQAAAABAAAAAAAuAAIAAAAAAAAAAAAuAAMAAAABAAAAAAAuAAQAAAABAAAAAAAvAAIAAAACAAAAAAAvAAMAAAABAAAAAAAvAAQAAAABAAAAAAAwAAIAAAACAAAAAAAwAAMAAAABAAAAAAAwAAQAAAABAAAAAAA1AAEAAAACAAAAAAA1AAIAAAABAAAAAAA1AAMAAAABAAAAAAA2AAEAAAACAAAAAAA2AAIAAAABAAAAAAA2AAMAAAABAAAAAAA3AAEAAAACAAAAAAA3AAIAAAABAAAAAAA3AAMAAAABAAAAAAA7AAAAAAAAAAAAAAA7AAEAAAABAAAAAAA7AAIAAAABAAAAAAA8AAAAAAAAAAAAAAA8AAEAAAABAAAAAAA8AAIAAAABAAAAAAA9AAAAAAAAAAAAAAA9AAEAAAABAAAAAAA9AAIAAAABAAAAAABBAP//AAACAAAAAABBAAAAAAABAAAAAABBAAEAAAABAAAAAABBAAIAAAABAAAAAABCAP//AAACAAAAAABCAAAAAAABAAAAAABCAAEAAAABAAAAAABCAAIAAAABAAAAAABDAP//AAAAAAAAAABDAAAAAAABAAAAAABDAAEAAAABAAAAAABDAAIAAAABAAAAAABIAAAAAAAAAAAAAABIAAEAAAABAAAAAABIAAIAAAABAAAAAABJAAAAAAAAAAAAAABJAAEAAAABAAAAAABJAAIAAAABAAAAAABKAAAAAAAAAAAAAABKAAEAAAABAAAAAABKAAIAAAABAAAAAABPAAEAAAAAAAAAAABPAAIAAAABAAAAAABPAAMAAAABAAAAAABQAAEAAAAAAAAAAABQAAIAAAABAAAAAABQAAMAAAABAAAAAABRAAEAAAACAAAAAABRAAIAAAABAAAAAABRAAMAAAABAAAAAABWAAIAAAAAAAAAAABWAAMAAAABAAAAAABWAAQAAAABAAAAAABWAAUAAAABAAAAAABXAAIAAAAAAAAAAABXAAMAAAABAAAAAABXAAQAAAABAAAAAABXAAUAAAABAAAAAABYAAIAAAAAAAAAAABYAAMAAAABAAAAAABYAAQAAAABAAAAAABYAAUAAAABAAAAAABZAAIAAAAAAAAAAABZAAMAAAABAAAAAABZAAQAAAABAAAAAABZAAUAAAABAAAAAABaAAIAAAAAAAAAAABaAAMAAAABAAAAAABaAAQAAAABAAAAAABaAAUAAAABAAAAAABbAAIAAAAAAAAAAABbAAMAAAABAAAAAABbAAQAAAABAAAAAABbAAUAAAABAAAAAABcAAIAAAAAAAAAAABcAAMAAAABAAAAAABcAAQAAAABAAAAAABcAAUAAAABAAAAAABdAAIAAAAAAAAAAABdAAMAAAABAAAAAABdAAQAAAABAAAAAABdAAUAAAABAAAAAABeAAIAAAAAAAAAAABeAAMAAAABAAAAAABeAAQAAAABAAAAAABeAAUAAAABAAAAAABfAAIAAAAAAAAAAABfAAMAAAABAAAAAABfAAQAAAABAAAAAABfAAUAAAABAAAAAABgAAIAAAAAAAAAAABgAAMAAAABAAAAAABgAAQAAAABAAAAAABgAAUAAAABAAAAAABhAAIAAAAAAAAAAABhAAMAAAABAAAAAABhAAQAAAABAAAAAABhAAUAAAABAAAAAABiAAIAAAAAAAAAAABiAAMAAAABAAAAAABiAAQAAAABAAAAAABiAAUAAAABAAAAAABjAAIAAAAAAAAAAABjAAMAAAABAAAAAABjAAQAAAABAAAAAABjAAUAAAABAAAAAABkAAIAAAAAAAAAAABkAAMAAAABAAAAAABkAAQAAAABAAAAAABkAAUAAAABAAAAAABoAAIAAAAAAAAAAABoAAMAAAABAAAAAABoAAQAAAABAAAAAABpAAIAAAAAAAAAAABpAAMAAAABAAAAAABpAAQAAAABAAAAAABqAAIAAAAAAAAAAABqAAMAAAABAAAAAABqAAQAAAABAAAAAABuAAEAAAAAAAAAAABuAAIAAAABAAAAAABuAAMAAAABAAAAAABvAAEAAAAAAAAAAABvAAIAAAABAAAAAABvAAMAAAABAAAAAABzAAAAAAACAAAAAABzAAEAAAABAAAAAABzAAIAAAABAAAAAAB0AAAAAAACAAAAAAB0AAEAAAABAAAAAAB0AAIAAAABAAAAAAB1AAAAAAAAAAAAAAB1AAEAAAABAAAAAAB1AAIAAAABAAAAAAB5AP//AAACAAAAAAB5AAAAAAABAAAAAAB5AAEAAAABAAAAAAB6AP//AAACAAAAAAB6AAAAAAABAAAAAAB6AAEAAAABAAAAAAB/AP//AAACAAAAAAB/AAAAAAABAAAAAAB/AAEAAAABAAAAAACAAP//AAACAAAAAACAAAAAAAABAAAAAACAAAEAAAABAAAAAACBAP//AAACAAAAAACBAAAAAAABAAAAAACBAAEAAAABAAAAAACFAAAAAAACAAAAAACFAAEAAAABAAAAAACFAAIAAAABAAAAAACGAAAAAAACAAAAAACGAAEAAAABAAAAAACGAAIAAAABAAAAAACKAAEAAAACAAAAAACKAAIAAAABAAAAAACKAAMAAAABAAAAAACLAAEAAAACAAAAAACLAAIAAAABAAAAAACLAAMAAAABAAAAAACMAAEAAAACAAAAAACMAAIAAAABAAAAAACMAAMAAAABAAAAAACRAAIAAAACAAAAAACRAAMAAAABAAAAAACRAAQAAAABAAAAAACSAAIAAAACAAAAAACSAAMAAAABAAAAAACSAAQAAAABAAAAAACWAAIAAAACAAAAAACWAAMAAAABAAAAAACWAAQAAAABAAAAAACXAAIAAAACAAAAAACXAAMAAAABAAAAAACXAAQAAAABAAAAAACYAAIAAAACAAAAAACYAAMAAAABAAAAAACYAAQAAAABAAAAAACdAAEAAAAAAAAAAACdAAIAAAABAAAAAACdAAMAAAABAAAAAACeAAEAAAAAAAAAAACeAAIAAAABAAAAAACeAAMAAAABAAAAAACiAAAAAAACAAAAAACiAAEAAAABAAAAAACiAAIAAAABAAAAAACjAAAAAAACAAAAAACjAAEAAAABAAAAAACjAAIAAAABAAAAAACkAAAAAAACAAAAAACkAAEAAAABAAAAAACkAAIAAAABAAAAAACoAP//AAAAAAAAAACoAAAAAAABAAAAAACoAAEAAAABAAAAAACpAP//AAAAAAAAAACpAAAAAAABAAAAAACpAAEAAAABAAAAAACuAP7/AAACAAAAAACuAP//AAABAAAAAACuAAAAAAABAAAAAACuAAEAAAABAAAAAACvAP7/AAACAAAAAACvAP//AAABAAAAAACvAAAAAAABAAAAAACvAAEAAAABAAAAAACwAP7/AAACAAAAAACwAP//AAABAAAAAACwAAAAAAABAAAAAACwAAEAAAABAAAAAAC1AP//AAAAAAAAAAC1AAAAAAABAAAAAAC1AAEAAAABAAAAAAC2AP//AAAAAAAAAAC2AAAAAAABAAAAAAC2AAEAAAABAAAAAAC6AAAAAAAAAAAAAAC6AAEAAAABAAAAAAC6AAIAAAABAAAAAAC7AAAAAAAAAAAAAAC7AAEAAAABAAAAAAC7AAIAAAABAAAAAAC8AAAAAAAAAAAAAAC8AAEAAAABAAAAAAC8AAIAAAABAAAAAADBAAEAAAAAAAAAAADBAAIAAAABAAAAAADBAAMAAAABAAAAAADCAAEAAAAAAAAAAADCAAIAAAABAAAAAADCAAMAAAABAAAAAADDAAEAAAAAAAAAAADDAAIAAAABAAAAAADDAAMAAAABAAAAAADIAAIAAAACAAAAAADIAAMAAAABAAAAAADIAAQAAAABAAAAAADJAAIAAAACAAAAAADJAAMAAAABAAAAAADJAAQAAAABAAAAAADKAAIAAAAAAAAAAADKAAMAAAABAAAAAADKAAQAAAABAAAAAADPAAIAAAAAAAAAAADPAAMAAAABAAAAAADPAAQAAAABAAAAAADPAAUAAAABAAAAAADQAAIAAAAAAAAAAADQAAMAAAABAAAAAADQAAQAAAABAAAAAADQAAUAAAABAAAAAADRAAIAAAAAAAAAAADRAAMAAAABAAAAAADRAAQAAAABAAAAAADRAAUAAAABAAAAAADSAAIAAAAAAAAAAADSAAMAAAABAAAAAADSAAQAAAABAAAAAADSAAUAAAABAAAAAADTAAIAAAAAAAAAAADTAAMAAAABAAAAAADTAAQAAAABAAAAAADTAAUAAAABAAAAAADUAAIAAAAAAAAAAADUAAMAAAABAAAAAADUAAQAAAABAAAAAADUAAUAAAABAAAAAADVAAIAAAAAAAAAAADVAAMAAAABAAAAAADVAAQAAAABAAAAAADVAAUAAAABAAAAAADWAAIAAAAAAAAAAADWAAMAAAABAAAAAADWAAQAAAABAAAAAADWAAUAAAABAAAAAADXAAIAAAAAAAAAAADXAAMAAAABAAAAAADXAAQAAAABAAAAAADXAAUAAAABAAAAAADYAAIAAAAAAAAAAADYAAMAAAABAAAAAADYAAQAAAABAAAAAADYAAUAAAABAAAAAADZAAIAAAAAAAAAAADZAAMAAAABAAAAAADZAAQAAAABAAAAAADZAAUAAAABAAAAAADaAAIAAAAAAAAAAADaAAMAAAABAAAAAADaAAQAAAABAAAAAADaAAUAAAABAAAAAADbAAIAAAAAAAAAAADbAAMAAAABAAAAAADbAAQAAAABAAAAAADbAAUAAAABAAAAAADcAAIAAAAAAAAAAADcAAMAAAABAAAAAADcAAQAAAABAAAAAADcAAUAAAABAAAAAADdAAIAAAAAAAAAAADdAAMAAAABAAAAAADdAAQAAAABAAAAAADdAAUAAAABAAAAAADeAAIAAAAAAAAAAADeAAMAAAABAAAAAADeAAQAAAABAAAAAADeAAUAAAABAAAAAADfAAIAAAAAAAAAAADfAAMAAAABAAAAAADfAAQAAAABAAAAAADfAAUAAAABAAAAAADgAAIAAAAAAAAAAADgAAMAAAABAAAAAADgAAQAAAABAAAAAADgAAUAAAABAAAAAADhAAIAAAAAAAAAAADhAAMAAAABAAAAAADhAAQAAAABAAAAAADhAAUAAAABAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAP//AAAAAAAAAAAYAAAAAAABAAAAAAAYAAEAAAABAAAAAAAYAAIAAAABAAAAAAAYAAMAAAABAAAAAADnAAIAAAACAAAAAADnAAMAAAABAAAAAADnAAQAAAABAAAAAADoAAIAAAACAAAAAADoAAMAAAABAAAAAADoAAQAAAABAAAAAADuAAIAAAACAAAAAADuAAMAAAABAAAAAADuAAQAAAABAAAAAADvAAIAAAACAAAAAADvAAMAAAABAAAAAADvAAQAAAABAAAAAAD0AAEAAAACAAAAAAD0AAIAAAABAAAAAAD0AAMAAAABAAAAAAD1AAEAAAACAAAAAAD1AAIAAAABAAAAAAD1AAMAAAABAAAAAAD6AAAAAAACAAAAAAD6AAEAAAABAAAAAAD6AAIAAAABAAAAAAD7AAAAAAACAAAAAAD7AAEAAAABAAAAAAD7AAIAAAABAAAAAAABAQEAAAAAAAAAAAABAQIAAAABAAAAAAABAQMAAAABAAAAAAACAQEAAAAAAAAAAAACAQIAAAABAAAAAAACAQMAAAABAAAAAAAGAQIAAAACAAAAAAAGAQMAAAABAAAAAAAGAQQAAAABAAAAAAAHAQIAAAACAAAAAAAHAQMAAAABAAAAAAAHAQQAAAABAAAAAAAMAQEAAAACAAAAAAAMAQIAAAABAAAAAAAMAQMAAAABAAAAAAANAQEAAAACAAAAAAANAQIAAAABAAAAAAANAQMAAAABAAAAAAASAQAAAAAAAAAAAAASAQEAAAABAAAAAAASAQIAAAABAAAAAAATAQAAAAAAAAAAAAATAQEAAAABAAAAAAATAQIAAAABAAAAAAAXAf//AAAAAAAAAAAXAQAAAAABAAAAAAAXAQEAAAABAAAAAAAXAQIAAAABAAAAAAAYAf//AAAAAAAAAAAYAQAAAAABAAAAAAAYAQEAAAABAAAAAAAYAQIAAAABAAAAAAAZAf//AAAAAAAAAAAZAQAAAAABAAAAAAAZAQEAAAABAAAAAAAZAQIAAAABAAAAAAAaAf//AAAAAAAAAAAaAQAAAAABAAAAAAAaAQEAAAABAAAAAAAaAQIAAAABAAAAAAAbAf//AAAAAAAAAAAbAQAAAAABAAAAAAAbAQEAAAABAAAAAAAbAQIAAAABAAAAAAAcAf//AAAAAAAAAAAcAQAAAAABAAAAAAAcAQEAAAABAAAAAAAcAQIAAAABAAAAAAAdAf//AAAAAAAAAAAdAQAAAAABAAAAAAAdAQEAAAABAAAAAAAdAQIAAAABAAAAAAAeAf//AAAAAAAAAAAeAQAAAAABAAAAAAAeAQEAAAABAAAAAAAeAQIAAAABAAAAAAAfAf//AAAAAAAAAAAfAQAAAAABAAAAAAAfAQEAAAABAAAAAAAfAQIAAAABAAAAAAAmAf//AAACAAAAAAAmAQAAAAABAAAAAAAmAQEAAAABAAAAAAAmAQIAAAABAAAAAAAnAf//AAACAAAAAAAnAQAAAAABAAAAAAAnAQEAAAABAAAAAAAnAQIAAAABAAAAAAAsAQAAAAAAAAAAAAAsAQEAAAABAAAAAAAsAQIAAAABAAAAAAAtAQAAAAAAAAAAAAAtAQEAAAABAAAAAAAtAQIAAAABAAAAAAAxAQEAAAACAAAAAAAxAQIAAAABAAAAAAAxAQMAAAABAAAAAAAyAQEAAAACAAAAAAAyAQIAAAABAAAAAAAyAQMAAAABAAAAAAA2AQIAAAACAAAAAAA2AQMAAAABAAAAAAA2AQQAAAABAAAAAAA3AQIAAAACAAAAAAA3AQMAAAABAAAAAAA3AQQAAAABAAAAAAA8AQIAAAAAAAAAAAA8AQMAAAABAAAAAAA8AQQAAAABAAAAAAA9AQIAAAAAAAAAAAA9AQMAAAABAAAAAAA9AQQAAAABAAAAAAA+AQIAAAAAAAAAAAA+AQMAAAABAAAAAAA+AQQAAAABAAAAAAA/AQIAAAAAAAAAAAA/AQMAAAABAAAAAAA/AQQAAAABAAAAAABAAQIAAAAAAAAAAABAAQMAAAABAAAAAABAAQQAAAABAAAAAABBAQIAAAAAAAAAAABBAQMAAAABAAAAAABBAQQAAAABAAAAAABCAQEAAAAAAAAAAABCAQIAAAABAAAAAABCAQMAAAABAAAAAABDAQEAAAAAAAAAAABDAQIAAAABAAAAAABDAQMAAAABAAAAAABEAQAAAAAAAAAAAABEAQEAAAABAAAAAABEAQIAAAABAAAAAABFAQAAAAAAAAAAAABFAQEAAAABAAAAAABFAQIAAAABAAAAAABGAf//AAAAAAAAAABGAQAAAAABAAAAAABGAQEAAAABAAAAAABGAQIAAAABAAAAAABHAf//AAAAAAAAAABHAQAAAAABAAAAAABHAQEAAAABAAAAAABHAQIAAAABAAAAAABIAf7/AAAAAAAAAABIAf//AAABAAAAAABIAQAAAAABAAAAAABIAQEAAAABAAAAAABJAf7/AAAAAAAAAABJAf//AAABAAAAAABJAQAAAAABAAAAAABJAQEAAAABAAAAAABQAf//AAACAAAAAABQAQAAAAABAAAAAABQAQEAAAABAAAAAABQAQIAAAABAAAAAABRAf//AAACAAAAAABRAQAAAAABAAAAAABRAQEAAAABAAAAAABRAQIAAAABAAAAAABWAQAAAAACAAAAAABWAQEAAAABAAAAAABWAQIAAAABAAAAAABXAQAAAAACAAAAAABXAQEAAAABAAAAAABXAQIAAAABAAAAAABcAQEAAAAAAAAAAABcAQIAAAABAAAAAABcAQMAAAABAAAAAABdAQEAAAAAAAAAAABdAQIAAAABAAAAAABdAQMAAAABAAAAAABiAQIAAAACAAAAAABiAQMAAAABAAAAAABiAQQAAAABAAAAAABjAQIAAAACAAAAAABjAQMAAAABAAAAAABjAQQAAAABAAAAAABpAQIAAAAAAAAAAABpAQMAAAABAAAAAABpAQQAAAABAAAAAABpAQUAAAABAAAAAABqAQIAAAAAAAAAAABqAQMAAAABAAAAAABqAQQAAAABAAAAAABqAQUAAAABAAAAAABrAQIAAAAAAAAAAABrAQMAAAABAAAAAABrAQQAAAABAAAAAABrAQUAAAABAAAAAABsAQIAAAAAAAAAAABsAQMAAAABAAAAAABsAQQAAAABAAAAAABsAQUAAAABAAAAAABtAQIAAAAAAAAAAABtAQMAAAABAAAAAABtAQQAAAABAAAAAABtAQUAAAABAAAAAABuAQIAAAAAAAAAAABuAQMAAAABAAAAAABuAQQAAAABAAAAAABuAQUAAAABAAAAAABvAQIAAAAAAAAAAABvAQMAAAABAAAAAABvAQQAAAABAAAAAABvAQUAAAABAAAAAABwAQIAAAAAAAAAAABwAQMAAAABAAAAAABwAQQAAAABAAAAAABwAQUAAAABAAAAAABxAQIAAAAAAAAAAABxAQMAAAABAAAAAABxAQQAAAABAAAAAABxAQUAAAABAAAAAAByAQIAAAAAAAAAAAByAQMAAAABAAAAAAByAQQAAAABAAAAAAByAQUAAAABAAAAAABzAQIAAAAAAAAAAABzAQMAAAABAAAAAABzAQQAAAABAAAAAABzAQUAAAABAAAAAAB0AQIAAAAAAAAAAAB0AQMAAAABAAAAAAB0AQQAAAABAAAAAAB0AQUAAAABAAAAAAB1AQIAAAAAAAAAAAB1AQMAAAABAAAAAAB1AQQAAAABAAAAAAB1AQUAAAABAAAAAAB2AQIAAAAAAAAAAAB2AQMAAAABAAAAAAB2AQQAAAABAAAAAAB2AQUAAAABAAAAAAB3AQIAAAAAAAAAAAB3AQMAAAABAAAAAAB3AQQAAAABAAAAAAB3AQUAAAABAAAAAAB4AQIAAAAAAAAAAAB4AQMAAAABAAAAAAB4AQQAAAABAAAAAAB4AQUAAAABAAAAAAB5AQIAAAAAAAAAAAB5AQMAAAABAAAAAAB5AQQAAAABAAAAAAB5AQUAAAABAAAAAAB6AQIAAAAAAAAAAAB6AQMAAAABAAAAAAB6AQQAAAABAAAAAAB6AQUAAAABAAAAAAB7AQIAAAAAAAAAAAB7AQMAAAABAAAAAAB7AQQAAAABAAAAAAB7AQUAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_0hol4")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1577662780]
+process_mode = 3
+visible = false
+script = ExtResource("4_ui")
+
+[node name="Progress" type="ProgressBar" parent="UI" unique_id=1312284392]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 60.0
+offset_top = 24.0
+offset_right = -60.0
+offset_bottom = 54.0
+grow_horizontal = 2
+step = 0.1
+show_percentage = false
+
+[node name="TimeLabel" type="Label" parent="UI" unique_id=1770879238]
+offset_left = 60.0
+offset_top = 64.0
+offset_right = 360.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 32
+text = "0.0 s"
+
+[node name="StartScreen" type="ColorRect" parent="UI" unique_id=302429939]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="Center" type="CenterContainer" parent="UI/StartScreen" unique_id=1579500875]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="VBoxContainer" parent="UI/StartScreen/Center" unique_id=335498763]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Title" type="Label" parent="UI/StartScreen/Center/Box" unique_id=1350304452]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "PogoJumper 3000"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="UI/StartScreen/Center/Box" unique_id=155799462]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "A / D to move"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="UI/StartScreen/Center/Box" unique_id=1933485530]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Play"
+
+[node name="FinishScreen" type="ColorRect" parent="UI" unique_id=2059791578]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="Center" type="CenterContainer" parent="UI/FinishScreen" unique_id=613232483]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="VBoxContainer" parent="UI/FinishScreen/Center" unique_id=13957632]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="FinishTitle" type="Label" parent="UI/FinishScreen/Center/Box" unique_id=1090602588]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "You made it!"
+horizontal_alignment = 1
+
+[node name="FinishTime" type="Label" parent="UI/FinishScreen/Center/Box" unique_id=1992834136]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="UI/FinishScreen/Center/Box" unique_id=782716262]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Play again"
+
+[node name="LevelLabel" type="Label" parent="UI" unique_id=1875430623]
+offset_left = 60.0
+offset_top = 110.0
+offset_right = 560.0
+offset_bottom = 160.0
+theme_override_fonts/font = ExtResource("11_font")
+theme_override_font_sizes/font_size = 28
+text = "LEVEL 1"
+
+[node name="LevelBanner" type="Label" parent="UI" unique_id=316994076]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("11_font")
+theme_override_font_sizes/font_size = 96
+text = "LEVEL 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BurgerLabel" type="Label" parent="UI" unique_id=1993998655]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -600.0
+offset_top = 70.0
+offset_right = -60.0
+offset_bottom = 116.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("11_font")
+theme_override_font_sizes/font_size = 24
+text = "BURGERS 0/0"
+horizontal_alignment = 2
+
+[node name="HeroBgNoStickyTree" type="Sprite2D" parent="." unique_id=1620428141]
+z_index = -262
+position = Vector2(6256.0005, -41)
+scale = Vector2(12.6625, 5.2137256)
+texture = ExtResource("5_q6r6c")
+
+[node name="UntitledDesignRemovebgPreview" type="Sprite2D" parent="HeroBgNoStickyTree" unique_id=408939927]
+position = Vector2(-326.94965, -15.152321)
+scale = Vector2(0.6101114, 0.57919556)
+texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview" type="Sprite2D" parent="HeroBgNoStickyTree/UntitledDesignRemovebgPreview" unique_id=51068505]
+position = Vector2(310.44424, 19.947311)
+texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview" type="Sprite2D" parent="HeroBgNoStickyTree/UntitledDesignRemovebgPreview/UntitledDesignRemovebgPreview" unique_id=2051271181]
+position = Vector2(333.89932, 3.260622)
+texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview2" type="Sprite2D" parent="HeroBgNoStickyTree" unique_id=231958580]
+position = Vector2(-326.94965, -15.152321)
+scale = Vector2(0.6101114, 0.57919556)
+texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview" type="Sprite2D" parent="HeroBgNoStickyTree/UntitledDesignRemovebgPreview2" unique_id=1917650025]
+position = Vector2(310.44424, 19.947311)
+texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview" type="Sprite2D" parent="HeroBgNoStickyTree/UntitledDesignRemovebgPreview2/UntitledDesignRemovebgPreview" unique_id=410947303]
+position = Vector2(333.89932, 3.260622)
+texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview2" type="Sprite2D" parent="HeroBgNoStickyTree/UntitledDesignRemovebgPreview2" unique_id=780423613]
+position = Vector2(843.04803, -90.40431)
+scale = Vector2(0.6101114, 0.57919556)
+texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview" type="Sprite2D" parent="HeroBgNoStickyTree/UntitledDesignRemovebgPreview2/UntitledDesignRemovebgPreview2" unique_id=91816639]
+position = Vector2(310.44424, 19.947311)
+texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview" type="Sprite2D" parent="HeroBgNoStickyTree/UntitledDesignRemovebgPreview2/UntitledDesignRemovebgPreview2/UntitledDesignRemovebgPreview" unique_id=600006635]
+position = Vector2(333.89932, 3.260622)
+texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview" type="Sprite2D" parent="." unique_id=741602786]
+position = Vector2(61, -733)
+texture = ExtResource("6_kdubu")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=814326712]
+process_mode = 3
+stream = ExtResource("8_music")
+volume_db = -12.0
+autoplay = true
+
+[node name="BgMiddle" type="Sprite2D" parent="." unique_id=1415002282]
+z_index = -207
+position = Vector2(19754.75, -66.74997)
+scale = Vector2(10.969076, 2.6620111)
+texture = ExtResource("10_ir8iy")
+
+[node name="Burger" type="Node" parent="." unique_id=1229678864]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger" unique_id=30148456]
+position = Vector2(693, 310)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger/Sprite2D" unique_id=1126474532]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger/Sprite2D/Area2D" unique_id=292050509]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger2" type="Node" parent="." unique_id=959232919]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger2" unique_id=522830801]
+position = Vector2(2214, 478)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger2/Sprite2D" unique_id=1128927897]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger2/Sprite2D/Area2D" unique_id=122323493]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger3" type="Node" parent="." unique_id=1982453441]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger3" unique_id=2100172659]
+position = Vector2(3067.0002, 97)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger3/Sprite2D" unique_id=212583696]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger3/Sprite2D/Area2D" unique_id=1750809082]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger4" type="Node" parent="." unique_id=643323531]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger4" unique_id=1224504034]
+position = Vector2(4774, 222)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger4/Sprite2D" unique_id=406947791]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger4/Sprite2D/Area2D" unique_id=327578197]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger5" type="Node" parent="." unique_id=872195206]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger5" unique_id=1233366163]
+position = Vector2(8742, 94)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger5/Sprite2D" unique_id=1747451099]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger5/Sprite2D/Area2D" unique_id=896741376]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger6" type="Node" parent="." unique_id=416878185]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger6" unique_id=1255295248]
+position = Vector2(10534, 350)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger6/Sprite2D" unique_id=2126966035]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger6/Sprite2D/Area2D" unique_id=508707657]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger7" type="Node" parent="." unique_id=158179840]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger7" unique_id=1673819501]
+position = Vector2(15142, 222)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger7/Sprite2D" unique_id=1507314495]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger7/Sprite2D/Area2D" unique_id=902590261]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger8" type="Node" parent="." unique_id=1634309023]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger8" unique_id=307399600]
+position = Vector2(16678, 94)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger8/Sprite2D" unique_id=573436516]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger8/Sprite2D/Area2D" unique_id=813230812]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger9" type="Node" parent="." unique_id=1078772619]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger9" unique_id=1964338419]
+position = Vector2(22694, -34)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger9/Sprite2D" unique_id=399029934]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger9/Sprite2D/Area2D" unique_id=606720043]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger10" type="Node" parent="." unique_id=1537477075]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger10" unique_id=1264428420]
+position = Vector2(26022, 478)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger10/Sprite2D" unique_id=1632423775]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger10/Sprite2D/Area2D" unique_id=616816217]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger11" type="Node" parent="." unique_id=214871217]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger11" unique_id=301050784]
+position = Vector2(33190, 350)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger11/Sprite2D" unique_id=810260014]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger11/Sprite2D/Area2D" unique_id=602806630]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger12" type="Node" parent="." unique_id=58016249]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger12" unique_id=274001681]
+position = Vector2(37926, 94)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger12/Sprite2D" unique_id=769812062]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger12/Sprite2D/Area2D" unique_id=903800546]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger13" type="Node" parent="." unique_id=499028972]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger13" unique_id=914438681]
+position = Vector2(42278, -34)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger13/Sprite2D" unique_id=824147793]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger13/Sprite2D/Area2D" unique_id=1403643849]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger14" type="Node" parent="." unique_id=1661428994]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger14" unique_id=1694265976]
+position = Vector2(44838, 350)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger14/Sprite2D" unique_id=1748070364]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger14/Sprite2D/Area2D" unique_id=1352541431]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="LandingFrame4Q80" type="Sprite2D" parent="." unique_id=1835468317]
+z_index = -192
+position = Vector2(38739.5, -67.749954)
+scale = Vector2(11.571354, 1.5618129)
+texture = ExtResource("14_nr8wp")
+
+[node name="UntitledDesignRemovebgPreview2" type="Sprite2D" parent="." unique_id=1249086215]
+z_index = -181
+position = Vector2(30539, -272)
+scale = Vector2(28.888575, 5.229032)
+texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview2" type="Sprite2D" parent="UntitledDesignRemovebgPreview2" unique_id=2019858168]
+z_index = -181
+position = Vector2(31484.004, -349)
+scale = Vector2(28.888575, 5.229032)
+texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview3" type="Sprite2D" parent="UntitledDesignRemovebgPreview2" unique_id=625676203]
+z_index = -181
+position = Vector2(31484.004, -349)
+scale = Vector2(28.888575, 5.229032)
+texture = ExtResource("6_kdubu")
+
+[node name="UntitledDesignRemovebgPreview2" type="Sprite2D" parent="UntitledDesignRemovebgPreview2/UntitledDesignRemovebgPreview3" unique_id=1515137519]
+z_index = -181
+position = Vector2(31484.004, -349)
+scale = Vector2(28.888575, 5.229032)
+texture = ExtResource("6_kdubu")
