@@ -1,11 +1,13 @@
 [gd_scene format=4 uid="uid://ln7myfsat5py"]
 
 [ext_resource type="Script" uid="uid://1cmv3krxd7kr" path="res://playerMocment.gd" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://6tp3wyjdwwxm" path="res://basicBurger.png" id="1_d21ai"]
 [ext_resource type="Texture2D" uid="uid://d3370i0cjyhti" path="res://dude.png" id="2_0hol4"]
 [ext_resource type="Texture2D" uid="uid://dlhgkdskec4hl" path="res://tiles.png" id="3_epypp"]
 [ext_resource type="Script" uid="uid://7kvrwu8roo3m" path="res://ui.gd" id="4_ui"]
 [ext_resource type="Texture2D" uid="uid://cmibqq6mlrx7q" path="res://hero-bg-no-sticky-tree.webp" id="5_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://bmgcbkrpnavjp" path="res://Untitled_Design-removebg-preview.png" id="6_kdubu"]
+[ext_resource type="Script" uid="uid://dc75d0j0ahr34" path="res://burger.gd" id="8_rj586"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kdubu"]
 radius = 88.0
@@ -28,6 +30,9 @@ physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "ice"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_0e48y")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5iupw"]
+radius = 107.07474
 
 [node name="Node2D" type="Node2D" unique_id=1716575142]
 position = Vector2(230, 372)
@@ -204,3 +209,18 @@ texture = ExtResource("6_kdubu")
 [node name="UntitledDesignRemovebgPreview" type="Sprite2D" parent="." unique_id=741602786]
 position = Vector2(61, -733)
 texture = ExtResource("6_kdubu")
+
+[node name="Burger" type="Node" parent="." unique_id=1229678864]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger" unique_id=30148456]
+position = Vector2(693, 310)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger/Sprite2D" unique_id=1126474532]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger/Sprite2D/Area2D" unique_id=292050509]
+shape = SubResource("CircleShape2D_5iupw")

@@ -22,8 +22,8 @@ var jumpMultiplier = 2.0
 @export var iceAccel := 100.0
 var onIce := false
 
-var squishAmount = 10;
-	
+var squishAmount = 10
+var score = 0
 
 func _physics_process(delta: float) -> void:
 	if scale.x > 1:
@@ -101,3 +101,10 @@ func _floor_is_ice() -> bool:
 				if data:
 					return data.get_custom_data("ice")
 	return false
+
+func _on_collect_signal():
+	score += 10
+	update_score_label()
+
+func update_score_label():
+	$UI/ScoreLabel.text = str(score)
