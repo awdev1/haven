@@ -270,3 +270,152 @@ script = ExtResource("8_rj586")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Burger/Sprite2D/Area2D" unique_id=292050509]
 shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger2" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger2"]
+position = Vector2(2214.0, 478)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger2/Sprite2D"]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger2/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger3" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger3"]
+position = Vector2(3110.0, 350)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger3/Sprite2D"]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger3/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger4" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger4"]
+position = Vector2(4774.0, 222)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger4/Sprite2D"]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger4/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger5" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger5"]
+position = Vector2(8742.0, 94)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger5/Sprite2D"]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger5/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger6" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger6"]
+position = Vector2(10534.0, 350)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger6/Sprite2D"]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger6/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger7" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger7"]
+position = Vector2(15142.0, 222)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger7/Sprite2D"]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger7/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger8" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger8"]
+position = Vector2(16678.0, 94)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger8/Sprite2D"]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger8/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger9" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger9"]
+position = Vector2(22694.0, -34)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger9/Sprite2D"]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger9/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="Burger10" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Burger10"]
+position = Vector2(26022.0, 478)
+scale = Vector2(0.15999925, 0.15999925)
+texture = ExtResource("1_d21ai")
+
+[node name="Area2D" type="Area2D" parent="Burger10/Sprite2D"]
+position = Vector2(18.750088, -75.00035)
+scale = Vector2(6.2500296, 6.2500296)
+script = ExtResource("8_rj586")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Burger10/Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_5iupw")
+
+[node name="BurgerLabel" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -600.0
+offset_top = 70.0
+offset_right = -60.0
+offset_bottom = 116.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("11_font")
+theme_override_font_sizes/font_size = 24
+text = "BURGERS 0/0"
+horizontal_alignment = 2

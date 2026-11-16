@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var timeLabel: Label = $TimeLabel
 @onready var levelLabel: Label = $LevelLabel
 @onready var levelBanner: Label = $LevelBanner
+@onready var burgerLabel: Label = $BurgerLabel
 @onready var startScreen: Control = $StartScreen
 @onready var finishScreen: Control = $FinishScreen
 @onready var finishTime: Label = $FinishScreen/Center/Box/FinishTime
@@ -17,6 +18,8 @@ var startX := 0.0
 var elapsed := 0.0
 var running := false
 var currentLevel := 0
+var burgers := 0
+var burgerTotal := 0
 
 func _ready() -> void:
 	visible = true
@@ -27,6 +30,7 @@ func _ready() -> void:
 	$StartScreen/Center/Box/PlayButton.pressed.connect(_on_play)
 	$FinishScreen/Center/Box/RestartButton.pressed.connect(_on_restart)
 	$StartScreen/Center/Box/PlayButton.grab_focus()
+	_connect_burgers.call_deferred()
 
 func _on_play() -> void:
 	startScreen.hide()
@@ -59,7 +63,20 @@ func _process(delta: float) -> void:
 	progress.value = clampf((player.global_position.x - startX) / (finishX - startX), 0.0, 1.0) * 100.0
 	if player.global_position.x >= finishX:
 		running = false
-		finishTime.text = "Time: %.1f s" % elapsed
+		finishTime.text = "Time: %.1f s   Burgers: %d/%d" % [elapsed, burgers, burgerTotal]
 		finishScreen.show()
 		get_tree().paused = true
 		$FinishScreen/Center/Box/RestartButton.grab_focus()
+
+func _connect_burgers() -> void:
+	for b in get_tree().get_nodes_in_group("burger"):
+		b.collect_signal.connect(_on_burger)
+		burgerTotal += 1
+	_update_burgers()
+
+func _on_burger() -> void:
+	burgers += 1
+	_update_burgers()
+
+func _update_burgers() -> void:
+	burgerLabel.text = "BURGERS %d/%d" % [burgers, burgerTotal]

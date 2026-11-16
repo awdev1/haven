@@ -1,11 +1,12 @@
 extends Area2D
 
-
 signal collect_signal
 
-func _on_body_entered(body):
+func _ready() -> void:
+	add_to_group("burger")
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("is_player"):
-		# Remove the collectible
-		queue_free()
-		# Emit a signal to the main scene
-		emit_signal("collect_signal")
+		collect_signal.emit()
+		get_parent().get_parent().queue_free()

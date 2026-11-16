@@ -86,6 +86,7 @@ func _physics_process(delta: float) -> void:
 	$Sprite2D.rotation = lerp_angle($Sprite2D.rotation, target_tilt, clampf(tiltSmoothing * delta, 0.0, 1.0))
 
 
+@export var level2X := 11300.0
 @onready var _start_position := global_position
 
 func _process(_delta: float) -> void:
@@ -120,3 +121,19 @@ func _play_bounce_sound() -> void:
 	sfx.pitch_scale = randf_range(0.9, 1.1)
 	sfx.play(bounceSounds.pick_random())
 	get_tree().create_timer(0.35).timeout.connect(sfx.stop)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_1: _teleport(Vector2(246, 300))
+			KEY_2: _teleport(Vector2(level2X + 100, 300))
+			KEY_3: _teleport(Vector2(26000, 300))
+
+func _teleport(pos: Vector2) -> void:
+	global_position = pos
+	velocity = Vector2.ZERO
+	falling = false
+
+func is_player() -> bool:
+	return true
