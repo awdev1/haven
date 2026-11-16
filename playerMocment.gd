@@ -98,6 +98,16 @@ func _physics_process(delta: float) -> void:
 @onready var spriteBasePosition: Vector2 = $Sprite2D.position
 const spriteFootOffset := 209.5
 var squish := Vector2.ONE
+@export var widthPerBurger := 0.1
+@export var hitboxWidthPerBurger := 0.05
+var widthScale := 1.0
+var hitboxScale := 1.0
+
+func eat_burger() -> void:
+	widthScale += widthPerBurger
+	hitboxScale += hitboxWidthPerBurger
+	($CollisionShape2D.shape as CapsuleShape2D).radius = 100.0 * hitboxScale
+	squish = Vector2(1.6, 0.7)
 
 func _process(_delta: float) -> void:
 	#if scale.x > 1:
@@ -152,5 +162,5 @@ func is_player() -> bool:
 	return true
 
 func _apply_squish() -> void:
-	$Sprite2D.scale = spriteBaseScale * squish
+	$Sprite2D.scale = spriteBaseScale * squish * Vector2(widthScale, 1.0)
 	$Sprite2D.position.y = spriteBasePosition.y + spriteFootOffset * (1.0 - squish.y)

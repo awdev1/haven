@@ -9,4 +9,6 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("is_player"):
 		collect_signal.emit()
+		if body.has_method("eat_burger"):
+			body.eat_burger()
 		get_parent().get_parent().queue_free()
