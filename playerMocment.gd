@@ -33,10 +33,9 @@ var squishAmount = 10;
 	
 
 func _physics_process(delta: float) -> void:
-	if scale.x > 1:
-		var x = scale.x - 0.02
-		var y = scale.y + 0.02
-		scale = Vector2(x, y)
+	if squish.x > 1.0:
+		squish = Vector2(squish.x - 0.02, squish.y + 0.02)
+	_apply_squish()
 	
 	if is_on_wall():
 		SPEED = -700
@@ -53,7 +52,7 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if is_on_floor():
-		scale = Vector2(1.2, 0.8)
+		squish = Vector2(1.2, 0.8)
 		_play_bounce_sound()
 		velocity.y = JUMP_VELOCITY * jumpMultiplier
 
@@ -92,15 +91,22 @@ func _physics_process(delta: float) -> void:
 
 
 @export var level2X := 11300.0
+@export var level3X := 26800.0
+@export var checkpointXs: Array[float] = [11300.0, 26800.0, 35942.0, 40678.0]
 @onready var _start_position := global_position
+@onready var spriteBaseScale: Vector2 = $Sprite2D.scale
+@onready var spriteBasePosition: Vector2 = $Sprite2D.position
+const spriteFootOffset := 209.5
+var squish := Vector2.ONE
 
 func _process(_delta: float) -> void:
 	#if scale.x > 1:
 		#var x = scale.x - 0.01
 		#var y = scale.y + 0.01
 		#scale = Vector2(x, y)
-	if global_position.x >= level2X and _start_position.x < level2X and is_on_floor():
-		_start_position = global_position
+	for checkpointX in checkpointXs:
+		if global_position.x >= checkpointX and _start_position.x < checkpointX and is_on_floor():
+			_start_position = global_position
 	if global_position.y > fallSoundY and not falling:
 		falling = true
 		deathSound.play(0.5)
@@ -134,6 +140,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_1: _teleport(Vector2(246, 300))
 			KEY_2: _teleport(Vector2(level2X + 100, 300))
 			KEY_3: _teleport(Vector2(26000, 300))
+			KEY_4: _teleport(Vector2(level3X + 100, 300))
+			KEY_5: _teleport(Vector2(46000, 300))
 
 func _teleport(pos: Vector2) -> void:
 	global_position = pos
@@ -142,3 +150,7 @@ func _teleport(pos: Vector2) -> void:
 
 func is_player() -> bool:
 	return true
+
+func _apply_squish() -> void:
+	$Sprite2D.scale = spriteBaseScale * squish
+	$Sprite2D.position.y = spriteBasePosition.y + spriteFootOffset * (1.0 - squish.y)

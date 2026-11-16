@@ -1,8 +1,8 @@
 extends CanvasLayer
 
 @export var level2X := 11300.0
-@export var level3X := 1.0e9
-@export var finishX := 26800.0
+@export var level3X := 26800.0
+@export var finishX := 46498.0
 
 @onready var player: CharacterBody2D = $"../player"
 @onready var progress: ProgressBar = $Progress
